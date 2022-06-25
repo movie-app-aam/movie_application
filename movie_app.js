@@ -1,13 +1,9 @@
-// Loading screen
-
-
 const url = 'https://brassy-bronze-fender.glitch.me/movies'
 let title = document.getElementById('addMovie')
 let rating = document.getElementById('addRating')
 const btn1 = document.getElementById("btn1")
-btn1.addEventListener("click", createMovie)
-
-
+// btn1.addEventListener("click", createMovie)
+// fetch() method used to request to the server and load the infromation from glitch on to the webpage
     fetch(url)
         .then(function (res) {
             console.log(res)
@@ -16,29 +12,15 @@ btn1.addEventListener("click", createMovie)
             console.log(data)
         $("#loading-image").addClass('hide')
         console.log(data)
-
+// Loop in order to iterate through movie objects in array
         const htmlText = data.map(function (o) {
-            return `
-
-    <div>${loadMovies(o.title)}</div>
-
-
-`;
-
-
-
+            // console.log(o.title)
+            loadMovies(o.title)
+            return`
+                  `;
         })
-
         $('#movies').append(htmlText)
-
-        // loadMovies(data[0].title)
-
-
-
-
     })
-
-
 // Titles: https://omdbapi.com/?s=thor&page=1&apikey=fc1fef96
 // OMDb API: http://www.omdbapi.com/?i=tt3896198&apikey=8727ba32
 
@@ -51,47 +33,15 @@ async function loadMovies(searchTerm){
     const URL = `https://omdbapi.com/?s=${searchTerm}&page=1&apikey=8727ba32`
     const res = await fetch(`${URL}`);
     const data = await res.json();
-    console.log(data);
-    if (data.Response === "True") displayMovieList(data.Search)
+    // console.log(data.Search[0]);
+    if (data.Response === "True") displayMovie(data.Search[0].Poster)
 }
 
-function findMovies(){
+function addMovies(){
     let searchTerm = (moviesSearchBox.value).trim();
     // console.log(searchTerm);
     // loadMovies(searchTerm)
 }
-
-function displayMovieList(movies){
-searchList.innerHTML = "";
-for(let idx = 0; idx < 1; idx++){
-    let movieListItem = document.createElement('div');
-    // console.log(movieListItem)
-    movieListItem.dataset.id = movies[idx].imdbID;
-    movieListItem.classList.add('search-list-item');
-    if(movies[idx].Poster !== "N/A" )
-        moviePoster = movies[idx].Poster;
-        else
-            moviePoster ="image_not_found";
-
-        movieListItem.innerHTML = `
-    <div calss="result-container">
-        <h4 style="text-align: center">${movies[idx].Title}</h4>
-        <div class = "result-grid" id = "result-grid">
-<!--   movie info here    -->
-            <div class="movie-poster">
-                <img src ="${moviePoster}">
-            </div>
-
-        </div>
-    </div>
-        `;
-        searchList.appendChild(movieListItem)
-}
-
-}
-
-
-//     <img src ="${moviePoster}">
 
 function createMovie(e) {
     e.preventDefault()
@@ -115,27 +65,24 @@ function createMovie(e) {
 
 
     console.log(movie)
-
-
 }
 
+// Display movies from mock glitch database
+ function displayMovie(movies){
+    // return movies.this = movies[0].Poster
+let movieItem = document.createElement('div')
 
-// <div className="card">
-//     <div className="card-header">Title: ${o.title}</div>
-//     <div className="card-body"><img
-//         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRH_s11214cj0Z8H_o9SkPsIArI8tsF4SIQZg&usqp=CAU"></div>
-//     <div className="card-footer">Rating: ${o.rating}</div>
-//     <div className="card-footer">ID: ${o.id}</div>
-//
-//
-//     <form>
-//         <button className="delete" value=${o.id}>Delete</button>
-//     </form>
-// </div>
-//
-// <br>
+movieItem.innerHTML =
+ `
+ <div className="card-body">
+    <div>
+        <img src="${movies}">
+    </div>
+</div><br>
+`
+searchList.appendChild(movieItem)
 
-
+}
 
 
 
