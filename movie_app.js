@@ -1,4 +1,4 @@
-const url = 'https://brassy-bronze-fender.glitch.me/movies'
+const url = 'https://materialistic-truthful-papaya.glitch.me/movies'
 let title = document.getElementById('addMovie')
 let rating = document.getElementById('addRating')
 const btn1 = document.getElementById("btn1")
@@ -74,13 +74,14 @@ let movieItem = document.createElement('div')
 
 movieItem.innerHTML =
  `
- <div className="card-body">
+ <div id="poster" className="card-body">
     <div>
         <img src="${movies}">
     </div>
-</div><br>
+
 `
 searchList.appendChild(movieItem)
+
 
 }
 

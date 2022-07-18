@@ -3,10 +3,11 @@ body {
 }
 
 #movies {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    margin-top: 20px;
+
+
+
+
+
 
 
 
@@ -19,13 +20,14 @@ body {
     overflow: auto;
     background-color: rgba(0, 0, 80, 0.1) ;
     margin-bottom: 20px;
-    margin-right: auto;
+
 
 }
 
 .card-body {
     display: flex;
     justify-content: center;
+
 }
 
 .card-header {
@@ -117,5 +119,12 @@ padding-top: 20px;
 }
 
 .card-body {
+
+}
+
+#poster {
+    margin-right: 40px;
+    margin-bottom: 40px;
+    padding-left: 20px;
 
 }
