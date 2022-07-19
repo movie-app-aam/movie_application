@@ -34,7 +34,9 @@ async function loadMovies(searchTerm){
     const res = await fetch(`${URL}`);
     const data = await res.json();
     // console.log(data.Search[0]);
-    if (data.Response === "True") displayMovie(data.Search[0].Poster)
+    if (data.Response === "True") displayMovie(data.Search[0])
+    console.log(data.Search[0].Title)
+    console.log(data)
 }
 
 function addMovies(){
@@ -46,11 +48,11 @@ function addMovies(){
 function createMovie(e) {
     e.preventDefault()
     let movie = {
-        'title': title.value,
-        'rating': rating.value
+        'title': title.value
+        // 'rating': rating.value
     }
 
-    const url = 'https://brassy-bronze-fender.glitch.me/movies';
+    const url = 'https://materialistic-truthful-papaya.glitch.me/movies';
     const options = {
         method: 'POST',
         headers: {
@@ -67,6 +69,10 @@ function createMovie(e) {
     console.log(movie)
 }
 
+btn1.addEventListener("click", createMovie)
+
+
+
 // Display movies from mock glitch database
  function displayMovie(movies){
     // return movies.this = movies[0].Poster
@@ -74,16 +80,27 @@ let movieItem = document.createElement('div')
 
 movieItem.innerHTML =
  `
- <div id="poster" className="card-body">
-    <div>
-        <img src="${movies}">
+<div class="container mt-5" >
+<div class="card-deck">
+<div class="card">
+<h5 class="card-title">${movies.Title}</h5>
+    <div class="card-body">
+        <img class="card-img-top" src="${movies.Poster}" class="img-fluid" alt="Card image cap">
+            <h5 class="card-title"></h5>
+            <p class="card-text"></p>
+            <p class="card-text"><small class="text-muted"></small></p>
     </div>
+</div>
+</div>
+</div>
 
 `
 searchList.appendChild(movieItem)
-
+console.log(movies)
 
 }
+
+
 
 
 
